@@ -17,8 +17,11 @@
 .env.development.local
 .env.test.local
 .env.production.local
+<<<<<<< HEAD
 .github
 .idea/*
+=======
+>>>>>>> 66f3ba6e6e7435aa827db8a2a9ce4b80c9b9d177
 
 npm-debug.log*
 yarn-debug.log*
