@@ -1,0 +1,110 @@
+@import "../../styles/index.scss";
+
+.form_container {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+
+  .form_top {
+    display: flex;
+    justify-content: space-between;
+    .title {
+      @include font-base(get_color(gray_800), 700, 20px, 23.87px);
+    }
+    .submit_button {
+      background-color: get_color(gray_400);
+      border-radius: 8px;
+      width: 74px;
+      height: 42px;
+      padding: 10px 20px;
+      border: none;
+      @include font-base(get_color(white), 600, 16px, 19.09px);
+    }
+
+    .submit_button.active {
+      background-color: get_color(blue_primary);
+    }
+  }
+
+  .form_bottom {
+    display: flex;
+    flex-direction: column;
+
+    .form_element {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      .form_label {
+        @include font-base(get_color(gray_800), 700, 18px, 21.48px);
+      }
+
+      .form_title {
+        background-color: get_color(gray_100);
+        padding: 16px 24px;
+        border-radius: 12px;
+        border: none;
+        @include font-base(get_color(gray_400), 400, 16px, 24px);
+        height: 56px;
+      }
+
+      .form_textarea {
+        background-color: get_color(gray_100);
+        @include font-base(get_color(gray_400), 400, 16px, 24px);
+        width: 100%;
+        height: 100%;
+
+        padding: 16px 24px;
+
+        border-radius: 12px;
+        border: none;
+
+        height: 282px;
+        resize: none;
+        text-decoration: none;
+        flex-shrink: 0;
+      }
+
+      padding-block-end: 20px;
+    }
+
+    .image_button_area {
+      display: flex;
+      column-gap: 20px;
+
+      .image_add_button {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        @include font-base(get_color(gray_400), 400, 16px, 24px);
+        width: 282px;
+        height: 282px;
+        border-radius: 14px;
+        background-color: get_color(gray_100);
+      }
+
+      .image {
+        position: relative;
+        display: inline-block;
+        width: 282px;
+        height: 282px;
+        border-radius: 14px;
+        border: 1px solid get_color(gray_200);
+        aspect-ratio: 1/1;
+
+        .image_preview_closebtn {
+          width: 20px;
+          height: 20px;
+          border-radius: 999px;
+          border: none;
+          background-color: get_color(blue_primary);
+          @include font-base(get_color(white), 700, 10px, 16px);
+          position: absolute;
+          right: 5px;
+          top: 5px;
+        }
+      }
+    }
+  }
+}

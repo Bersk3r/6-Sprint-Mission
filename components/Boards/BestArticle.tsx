@@ -6,7 +6,6 @@ import HeartIcon from "../../src/assets/images/board/heart-icon.svg";
 import { useEffect, useState } from "react";
 import { getArticles } from "../../api/getArticles";
 import formatDate from "../../lib/formatDate";
-import useGetCountsOfData from "../../hooks/useGetCountsOfData";
 
 interface ArticleList {
   posts: Article[];
@@ -29,9 +28,23 @@ interface WriterInfo {
   nickname: string;
 }
 
+const getWindowSize = () => {
+  if (typeof window !== "undefined") {
+    if (window.innerWidth < 375) {
+      return 1;
+    } else if (window.innerWidth < 768) {
+      return 2;
+    } else {
+      return 3;
+    }
+  }
+  return 3;
+};
+
 export default function BestArticle() {
   const [articles, setArticles] = useState<Article[]>([]);
-  const pageSize = useGetCountsOfData({ desktop: 3, tablet: 2, mobile: 1 });
+  const [pageSize, setPageSize] = useState(getWindowSize());
+  const [windowWidth, setWindowWidth] = useState(0);
 
   async function getArticleData({ pageSize }: { pageSize: number }) {
     const res = await getArticles({ pageSize });
@@ -41,6 +54,19 @@ export default function BestArticle() {
   useEffect(() => {
     getArticleData({ pageSize });
   }, [pageSize]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+      setPageSize(getWindowSize());
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [windowWidth]);
 
   return (
     <ul className={style.article_list}>
