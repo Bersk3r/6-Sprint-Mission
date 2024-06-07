@@ -1,0 +1,45 @@
+@import "../../styles/index.scss";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+
+  .comment_top {
+    display: flex;
+    justify-content: space-between;
+    .title {
+      @include font-base(get_color(gray_800), 400, 16px, 16.71px);
+    }
+    padding-block-end: 15px;
+  }
+  .comment_bottom {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-block-end: 20px;
+    border-bottom: 1px solid get_color(gray_200);
+    .nickname_area {
+      display: flex;
+      flex-direction: column;
+
+      .nickname {
+        display: flex;
+        justify-content: flex-start;
+        @include font-base(get_color(gray_600), 400, 14px, 16.71px);
+      }
+      .date {
+        @include font-base(get_color(gray_400), 400, 14px, 16.71px);
+      }
+
+      padding-inline-end: 10px;
+    }
+    .like_count {
+      display: flex;
+      gap: 10px;
+      .like_count_content {
+        @include font-base(get_color(gray_400), 400, 14px, 16.71px);
+      }
+    }
+  }
+}

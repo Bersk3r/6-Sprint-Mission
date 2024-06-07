@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/router";
 import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
 import PlusIcon from "../../src/assets/images/icons/ic_plus.svg";
 import style from "./AddBoardForm.module.scss";
@@ -6,14 +7,8 @@ import Image from "next/image";
 import { getToken } from "../../api/getToken";
 import { SetArticles } from "../../api/setArticles";
 
-interface finalDataProps {
-  image?: null | FileList;
-  content: string;
-  title: string;
-  token: string;
-}
-
 export default function AddBoardForm() {
+  const router = useRouter();
   const { register, watch, handleSubmit, setValue, getValues } = useForm();
   const [validate, setValidate] = useState(false);
   const [accessToken, setAccessToken] = useState("");
@@ -24,6 +19,7 @@ export default function AddBoardForm() {
       data.image = null;
     }
     await SetArticles({ ...data, token: accessToken });
+    router.push("/board");
     // console.log({ ...data, token: accessToken });
   };
 

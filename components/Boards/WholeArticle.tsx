@@ -6,6 +6,7 @@ import ProfileImage from "../../src/assets/images/ui/ic_profile_small.svg";
 import { useEffect, useState } from "react";
 import { getArticles } from "../../api/getArticles";
 import formatDate from "../../lib/formatDate";
+import Link from "next/link";
 
 interface ArticleList {
   posts: Article[];
@@ -50,7 +51,9 @@ export default function WholeArticle({ orderBy, keyword }: ArticlePropsType) {
       {articles.map((article) => (
         <li key={article.id} className={style.article}>
           <div className={style.article_top}>
-            <h2>{article.title}</h2>
+            <Link href={`/addboard/${article.id}`} className={style.title}>
+              {article.title}
+            </Link>
             {article.image ? (
               <div className={style.image}>
                 <Image fill src={article.image} alt={article.title} />

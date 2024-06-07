@@ -6,6 +6,7 @@ import HeartIcon from "../../src/assets/images/board/heart-icon.svg";
 import { useEffect, useState } from "react";
 import { getArticles } from "../../api/getArticles";
 import formatDate from "../../lib/formatDate";
+import Link from "next/link";
 
 interface ArticleList {
   posts: Article[];
@@ -74,7 +75,9 @@ export default function BestArticle() {
         <li key={article.id} className={style.article}>
           <BestBadge />
           <div className={style.article_top}>
-            <h2 className={style.title}>{article.title}</h2>
+            <Link href={`/addboard/${article.id}`} className={style.title}>
+              {article.title}
+            </Link>
             {article.image ? (
               <div className={style.image}>
                 <Image fill src={article.image} alt={article.title} />

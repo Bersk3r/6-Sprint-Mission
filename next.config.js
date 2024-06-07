@@ -4,15 +4,6 @@ const path = require("path");
 const nextConfig = {
   reactStrictMode: true,
   // assetPrefix: ".",
-  async redirects() {
-    return [
-      {
-        source: "/products/:id",
-        destination: "/items/:id",
-        permanent: true,
-      },
-    ];
-  },
   images: {
     remotePatterns: [
       {
@@ -20,6 +11,12 @@ const nextConfig = {
         hostname: "sprint-fe-project.s3.ap-northeast-2.amazonaws.com",
         port: "",
         pathname: "/Sprint_Mission/**",
+      },
+      {
+        protocol: "https",
+        hostname: "example.com",
+        port: "",
+        pathname: "/",
       },
     ],
   },
