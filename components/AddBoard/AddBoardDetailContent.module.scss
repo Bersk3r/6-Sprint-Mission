@@ -1,0 +1,39 @@
+@import "../../styles/index.scss";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  .content_top {
+    display: flex;
+    justify-content: space-between;
+    .title {
+      @include font-base(get_color(gray_800), 700, 20px, 23.87px);
+    }
+  }
+  .content_bottom {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    .nickname_area {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      .nickname {
+        @include font-base(get_color(gray_400), 400, 14px, 16.71px);
+      }
+      .date {
+        @include font-base(get_color(gray_400), 400, 14px, 16.71px);
+      }
+      border-right: 2px solid get_color(gray_200);
+      padding-inline-end: 10px;
+    }
+    .like_count {
+      display: flex;
+      gap: 10px;
+      .like_count_content {
+        @include font-base(get_color(gray_400), 400, 14px, 16.71px);
+      }
+    }
+  }
+}
