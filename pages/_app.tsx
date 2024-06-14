@@ -3,8 +3,12 @@ import type { AppProps } from "next/app";
 import Header from "../components/Layout/Header";
 import Container from "../components/Layout/Container";
 import Head from "next/head";
+import { AuthProvider } from "../contexts/AuthProvider";
+import { usePathname } from "next/navigation";
 
 export default function App({ Component, pageProps }: AppProps) {
+  const path = usePathname();
+
   return (
     <>
       <Head>
@@ -22,9 +26,11 @@ export default function App({ Component, pageProps }: AppProps) {
         </noscript>
         <title>판다마켓</title>
       </Head>
-      <Header />
+      {!(path === "/signin" || path === "/signup") && <Header />}
       <Container>
-        <Component {...pageProps} />
+        <AuthProvider>
+          <Component {...pageProps} />
+        </AuthProvider>
       </Container>
     </>
   );
