@@ -1,0 +1,104 @@
+@import "../../styles/index.scss";
+
+.form_container {
+  max-width: 640px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  .form_top {
+    gap: 10px;
+    .form_element {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      .form_label {
+        @include font-base(get_color(gray_800), 700, 18px, 21.48px);
+      }
+      .form_input {
+        background-color: get_color(gray_100);
+        border-radius: 12px;
+        border: none;
+        padding-inline: 16px;
+        height: 56px;
+
+        @include font-base(get_color(gray_800), 400, 16px, 24px);
+
+        &:active {
+          border: 1px solid get_color(blue_primary);
+        }
+
+        &.invalid {
+          border: 1px solid get_color(red);
+        }
+      }
+
+      .invalid_message {
+        @include font-base(get_color(red), 600, 15px, 17.9px);
+      }
+      padding-block-end: 16px;
+    }
+  }
+  .form_bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    .submit_button_box {
+      .submit_button {
+        background-color: get_color(gray_400);
+        border-radius: 40px;
+        width: 100%;
+        height: 56px;
+        padding: 10px 20px;
+        border: none;
+        @include font-base(get_color(white), 600, 16px, 19.09px);
+      }
+
+      .submit_button.active {
+        background-color: get_color(blue_primary);
+      }
+    }
+
+    .social_login_box {
+      padding: 23px 25px;
+      display: flex;
+      justify-content: space-between;
+      height: 74px;
+      border-radius: 8px;
+      background-color: get_color(sky_100);
+
+      .social_login_title {
+        @include font-base(get_color(gray_800), 600, 16px, 24px);
+      }
+
+      .social_login_links {
+        display: flex;
+        column-gap: 10px;
+        align-items: center;
+        .image {
+          position: relative;
+          display: inline-block;
+          width: 32px;
+          height: 32px;
+          aspect-ratio: 1/1;
+        }
+      }
+    }
+
+    .navigate_link_box {
+      display: flex;
+      justify-content: center;
+      gap: 5px;
+
+      .navigate_link_title {
+        @include font-base(get_color(gray_800), 600, 15px, 17.9px);
+      }
+
+      .navigate_link_content {
+        @include font-base(get_color(blue_link), 600, 15px, 17.9px);
+        text-decoration: underline;
+      }
+    }
+  }
+}

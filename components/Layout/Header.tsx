@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import Logo from "../../src/assets/images/logo/logo.svg";
 import style from "./Header.module.scss";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import ProfileImage from "../../src/assets/images/ui/ic_profile.svg";
 
 const menuItems = [
   { id: "item1", name: "자유게시판", path: "/board" },
@@ -13,6 +14,15 @@ const menuItems = [
 
 export default function Header() {
   const router = useRouter();
+  const [isAuth, setIsAuth] = useState(false);
+
+  useEffect(() => {
+    if (localStorage.getItem("accessToken")) {
+      setIsAuth(!isAuth);
+    } else {
+      setIsAuth(false);
+    }
+  }, []);
 
   return (
     <div className={style.header}>
@@ -44,9 +54,13 @@ export default function Header() {
           </ul>
         </nav>
       </div>
-      <Link href="/login" className={style.login_link}>
-        로그인
-      </Link>
+      {isAuth ? (
+        <ProfileImage />
+      ) : (
+        <Link href="/signin" className={style.login_link}>
+          로그인
+        </Link>
+      )}
     </div>
   );
 }

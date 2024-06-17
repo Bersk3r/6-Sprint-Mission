@@ -7,7 +7,7 @@ interface GetArticleCommentsByIdQuery {
 }
 
 export const getArticleCommentsById = async ({
-  articleId = 1,
+  articleId,
   limit = 20,
   cursor = 0,
 }: GetArticleCommentsByIdQuery) => {

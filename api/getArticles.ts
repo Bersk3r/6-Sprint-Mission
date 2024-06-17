@@ -16,9 +16,6 @@ export const getArticles = async ({
   try {
     const response = await axios.get("/articles", {
       params: { page, pageSize, orderBy, keyword },
-      headers: {
-        "Content-Type": "application/json",
-      },
     });
     return response.data;
   } catch (error) {
