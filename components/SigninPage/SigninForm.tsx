@@ -52,97 +52,89 @@ export default function SigninForm() {
   }, [router]);
 
   const handleBlur = () => {
-    console.log(formState.errors);
-    console.log(Object.keys(formState.errors).length);
-    if (
+    const isValidForm =
       !getValues(["email", "password"]).includes("") &&
-      Object.keys(formState.errors).length === 0
-    ) {
-      setValidate(true);
-    } else {
-      setValidate(false);
-    }
+      Object.keys(formState.errors).length === 0;
+    setValidate(isValidForm);
   };
 
   return (
-    <>
-      <form onSubmit={handleSubmit(onSubmit)} className={style.form_container}>
-        <div className={style.form_top}>
-          <div className={style.form_element}>
-            <label className={style.form_label}>이메일</label>
-            <input
-              {...register("email", {
-                onBlur: handleBlur,
-              })}
-              type="text"
-              placeholder="이메일을 입력해주세요."
-              className={
-                formState.errors.email
-                  ? `${style.form_input} ${style.invalid}`
-                  : style.form_input
-              }
-            />
-            <div className={style.invalid_message}>
-              {formState.errors.email?.message}
-            </div>
-          </div>
-          <div className={style.form_element}>
-            <label className={style.form_label}>비밀번호</label>
-            <input
-              {...register("password", {
-                onBlur: handleBlur,
-              })}
-              type="password"
-              placeholder="비밀번호를 입력해주세요."
-              className={
-                formState.errors.password
-                  ? `${style.form_input} ${style.invalid}`
-                  : style.form_input
-              }
-            />
-            <div className={style.invalid_message}>
-              {formState.errors.password?.message}
-            </div>
+    <form onSubmit={handleSubmit(onSubmit)} className={style.form_container}>
+      <div className={style.form_top}>
+        <div className={style.form_element}>
+          <label className={style.form_label}>이메일</label>
+          <input
+            {...register("email", {
+              onBlur: handleBlur,
+            })}
+            type="text"
+            placeholder="이메일을 입력해주세요."
+            className={
+              formState.errors.email
+                ? `${style.form_input} ${style.invalid}`
+                : style.form_input
+            }
+          />
+          <div className={style.invalid_message}>
+            {formState.errors.email?.message}
           </div>
         </div>
-        <div className={style.form_bottom}>
-          <div className={style.submit_button_box}>
-            <input
-              type="submit"
-              value="로그인"
-              className={
-                validate
-                  ? `${style.submit_button} ${style.active}`
-                  : style.submit_button
-              }
-              disabled={!validate}
-            />
+        <div className={style.form_element}>
+          <label className={style.form_label}>비밀번호</label>
+          <input
+            {...register("password", {
+              onBlur: handleBlur,
+            })}
+            type="password"
+            placeholder="비밀번호를 입력해주세요."
+            className={
+              formState.errors.password
+                ? `${style.form_input} ${style.invalid}`
+                : style.form_input
+            }
+          />
+          <div className={style.invalid_message}>
+            {formState.errors.password?.message}
           </div>
-          <div className={style.social_login_box}>
-            <h3 className={style.social_login_title}>간편 로그인하기</h3>
-            <div className={style.social_login_links}>
-              <Link href="https://google.com">
-                <div className={style.image}>
-                  <Image fill src={GoogleIcon} alt="구글 로그인" />
-                </div>
-              </Link>
-              <Link href="https://kakao.com">
-                <div className={style.image}>
-                  <Image fill src={KakaoIcon} alt="카카오톡 로그인" />
-                </div>
-              </Link>
-            </div>
-          </div>
-          <div className={style.navigate_link_box}>
-            <h3 className={style.navigate_link_title}>
-              판다마켓이 처음이신가요?
-            </h3>
-            <Link href="/signup" className={style.navigate_link_content}>
-              회원가입
+        </div>
+      </div>
+      <div className={style.form_bottom}>
+        <div className={style.submit_button_box}>
+          <input
+            type="submit"
+            value="로그인"
+            className={
+              validate
+                ? `${style.submit_button} ${style.active}`
+                : style.submit_button
+            }
+            disabled={!validate}
+          />
+        </div>
+        <div className={style.social_login_box}>
+          <h3 className={style.social_login_title}>간편 로그인하기</h3>
+          <div className={style.social_login_links}>
+            <Link href="https://google.com">
+              <div className={style.image}>
+                <Image fill src={GoogleIcon} alt="구글 로그인" />
+              </div>
+            </Link>
+            <Link href="https://kakao.com">
+              <div className={style.image}>
+                <Image fill src={KakaoIcon} alt="카카오톡 로그인" />
+              </div>
             </Link>
           </div>
         </div>
-      </form>
-    </>
+        <div className={style.navigate_link_box}>
+          <h3 className={style.navigate_link_title}>
+            판다마켓이 처음이신가요?
+          </h3>
+          <Link href="/signup" className={style.navigate_link_content}>
+            회원가입
+          </Link>
+        </div>
+      </div>
+    </form>
   );
 }
