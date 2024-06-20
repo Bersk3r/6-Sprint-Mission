@@ -62,37 +62,41 @@ export default function SigninForm() {
     <form onSubmit={handleSubmit(onSubmit)} className={style.form_container}>
       <div className={style.form_top}>
         <div className={style.form_element}>
-          <label className={style.form_label}>이메일</label>
-          <input
-            {...register("email", {
-              onBlur: handleBlur,
-            })}
-            type="text"
-            placeholder="이메일을 입력해주세요."
-            className={
-              formState.errors.email
-                ? `${style.form_input} ${style.invalid}`
-                : style.form_input
-            }
-          />
+          <label className={style.form_label}>
+            이메일
+            <input
+              {...register("email", {
+                onBlur: handleBlur,
+              })}
+              type="text"
+              placeholder="이메일을 입력해주세요."
+              className={
+                formState.errors.email
+                  ? `${style.form_input} ${style.invalid}`
+                  : style.form_input
+              }
+            />
+          </label>
           <div className={style.invalid_message}>
             {formState.errors.email?.message}
           </div>
         </div>
         <div className={style.form_element}>
-          <label className={style.form_label}>비밀번호</label>
-          <input
-            {...register("password", {
-              onBlur: handleBlur,
-            })}
-            type="password"
-            placeholder="비밀번호를 입력해주세요."
-            className={
-              formState.errors.password
-                ? `${style.form_input} ${style.invalid}`
-                : style.form_input
-            }
-          />
+          <label className={style.form_label}>
+            비밀번호
+            <input
+              {...register("password", {
+                onBlur: handleBlur,
+              })}
+              type="password"
+              placeholder="비밀번호를 입력해주세요."
+              className={
+                formState.errors.password
+                  ? `${style.form_input} ${style.invalid}`
+                  : style.form_input
+              }
+            />
+          </label>
           <div className={style.invalid_message}>
             {formState.errors.password?.message}
           </div>
