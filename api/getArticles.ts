@@ -19,6 +19,7 @@ export const getArticles = async ({
     });
     return response.data;
   } catch (error) {
-    throw new Error("잘못된 요청을 보냈습니다.");
+    console.error(`Failed to fetch Data: $error`);
+    throw error;
   }
 };
