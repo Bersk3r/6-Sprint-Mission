@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { getArticles } from "../../api/getArticles";
 import formatDate from "../../lib/formatDate";
 import Link from "next/link";
+import { debounce } from "../../lib/debounce";
 
 interface ArticleList {
   posts: Article[];
@@ -62,10 +63,12 @@ export default function BestArticle() {
       setPageSize(getWindowSize());
     };
 
-    window.addEventListener("resize", handleResize);
+    const debouncedHandleResize = debounce(handleResize, 300);
+
+    window.addEventListener("resize", debouncedHandleResize);
 
     return () => {
-      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("resize", debouncedHandleResize);
     };
   }, [windowWidth]);
 

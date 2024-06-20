@@ -4,15 +4,9 @@ interface GetArticleByIdQuery {
   articleId: number;
 }
 
-export const getArticleById = async ({
-  articleId = 1,
-}: GetArticleByIdQuery) => {
+export const getArticleById = async ({ articleId }: GetArticleByIdQuery) => {
   try {
-    const response = await axios.get(`/articles/${articleId}`, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await axios.get(`/articles/${articleId}`, {});
 
     return response.data;
   } catch (error) {
