@@ -50,7 +50,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
       email,
       password,
     });
-    localStorage.setItem("accessToken", res.data.accessToken);
+    localStorage.setItem("accessToken", JSON.stringify(res.data.accessToken));
 
     const { nextUser } = await getMe();
 
