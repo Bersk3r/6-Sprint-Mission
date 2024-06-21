@@ -6,7 +6,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import ProfileImage from "../../src/assets/images/ui/ic_profile.svg";
-import { useAuth } from "../../contexts/AuthProvider";
 
 const menuItems = [
   { id: "item1", name: "자유게시판", path: "/board" },
@@ -15,7 +14,6 @@ const menuItems = [
 
 export default function Header() {
   const router = useRouter();
-  const { user } = useAuth(false);
   const [isAuth, setIsAuth] = useState(false);
 
   useEffect(() => {
@@ -53,7 +51,7 @@ export default function Header() {
           </ul>
         </nav>
       </div>
-      {user && isAuth ? (
+      {isAuth ? (
         <ProfileImage />
       ) : (
         <Link href="/signin" className={style.login_link}>
