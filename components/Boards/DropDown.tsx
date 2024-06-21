@@ -1,11 +1,10 @@
 import SortIcon from "@/src/assets/images/icons/ic_sort.svg";
 import { useEffect, useState } from "react";
 import style from "./DropDown.module.scss";
-
-type Sorts = "recent" | "like";
+import { ArticleSort } from "../../types/articleTypes";
 
 interface DropdownProps {
-  onSortSelection: (sortOption: Sorts) => void;
+  onSortSelection: (sortOption: ArticleSort) => void;
 }
 
 export default function Dropdown({ onSortSelection }: DropdownProps) {

@@ -4,17 +4,13 @@ import style from "./style.module.scss";
 import { useState } from "react";
 import Dropdown from "../../components/Boards/DropDown";
 import SearchBar from "../../components/Boards/SearchBar";
-// import style from "./style.module.scss";
-// import Button from "@/components/Button";
-// import SearchBar from "@/components/SearchBar";
-// import DropDown from "@/components/DropDown";
-type Sorts = "recent" | "like";
+import { ArticleSort } from "../../types/articleTypes";
 
 export default function Board() {
-  const [order, setOrder] = useState<Sorts>("recent");
+  const [order, setOrder] = useState<ArticleSort>("recent");
   const [keyword, setKeyword] = useState("");
 
-  const handleClickItem = (sort: Sorts) => {
+  const handleClickItem = (sort: ArticleSort) => {
     setOrder(sort);
   };
 

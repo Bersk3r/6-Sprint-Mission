@@ -7,9 +7,9 @@ import { useEffect, useState } from "react";
 import { getArticles } from "../../api/getArticles";
 import formatDate from "../../lib/formatDate";
 import Link from "next/link";
-import { Article } from "../../types/articleTypes";
+import { Article, ArticleSort } from "../../types/articleTypes";
 interface ArticlePropsType {
-  orderBy: "recent" | "like";
+  orderBy: ArticleSort;
   keyword: string;
 }
 

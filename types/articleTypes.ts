@@ -18,3 +18,5 @@ export interface WriterInfo {
   id: number;
   nickname: string;
 }
+
+export type ArticleSort = "recent" | "like";
