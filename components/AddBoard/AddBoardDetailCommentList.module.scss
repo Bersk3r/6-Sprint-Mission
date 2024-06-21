@@ -43,3 +43,15 @@
     }
   }
 }
+
+.empty_icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding-block: 40px;
+  .empty_icon_content {
+    @include font-base(get_color(gray_400), 600, 16px, 21.78px);
+  }
+}

@@ -2,6 +2,7 @@ import React from "react";
 import ProfileImage from "../../src/assets/images/ui/ic_profile_small.svg";
 import MoreIcon from "../../src/assets/images/icons/ic_kebab.svg";
 import style from "./AddBoardDetailCommentList.module.scss";
+import EmptyCommentIcon from "../../src/assets/images/ui/empty-comments.svg";
 import elapsedTime from "../../lib/elapsedTime";
 
 type CommentsType = {
@@ -50,7 +51,10 @@ export default function AddBoardDetailCommentList({ comments }: CommentsType) {
           })}
         </>
       ) : (
-        <div>없습니다.</div>
+        <div className={style.empty_icon}>
+          <EmptyCommentIcon />
+          <h3 className={style.empty_icon_content}>댓글이 없습니다.</h3>
+        </div>
       )}
     </>
   );
