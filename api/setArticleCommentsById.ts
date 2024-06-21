@@ -3,11 +3,11 @@ import axios from "./axios";
 interface SetArticleCommentsByIdQuery {
   articleId: number;
   content: string;
-  token: string;
+  token: string | null;
 }
 
 export const setArticleCommentsById = async ({
-  articleId = 1,
+  articleId,
   content = "",
   token = "",
 }: SetArticleCommentsByIdQuery) => {
@@ -28,7 +28,7 @@ export const setArticleCommentsById = async ({
 
     return response.data;
   } catch (error) {
-    console.error(`Failed to fetch Data: $error`);
+    console.error(`Failed to fetch Data: ${error}`);
     throw error;
   }
 };

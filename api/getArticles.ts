@@ -19,7 +19,7 @@ export const getArticles = async ({
     });
     return response.data;
   } catch (error) {
-    console.error(`Failed to fetch Data: $error`);
+    console.error(`Failed to fetch Data: ${error}`);
     throw error;
   }
 };

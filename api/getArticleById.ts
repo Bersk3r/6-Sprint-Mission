@@ -10,7 +10,7 @@ export const getArticleById = async ({ articleId }: GetArticleByIdQuery) => {
 
     return response.data;
   } catch (error) {
-    console.error(`Failed to fetch Data: $error`);
+    console.error(`Failed to fetch Data: ${error}`);
     throw error;
   }
 };

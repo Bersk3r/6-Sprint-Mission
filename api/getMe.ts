@@ -7,7 +7,7 @@ export async function getMe() {
     nextUser = response.data;
     return nextUser;
   } catch (error) {
-    console.error(`Failed to fetch Data: $error`);
+    console.error(`Failed to fetch Data: ${error}`);
     throw error;
   }
 }
