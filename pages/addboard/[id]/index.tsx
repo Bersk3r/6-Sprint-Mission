@@ -7,31 +7,7 @@ import { getArticleById } from "../../../api/getArticleById";
 import axios from "../../../api/axios";
 
 import AddBoardDetailContent from "../../../components/AddBoard/AddBoardDetailContent";
-
-interface Article {
-  id: number;
-  title: string;
-  content: string;
-  image: string | null;
-  likeCount: number;
-  createdAt: Date;
-  updatedAt: Date;
-  writer: WriterInfo;
-}
-
-interface CommentTypes {
-  id: number;
-  content: string;
-  createdAt: Date;
-  updatedAt: Date;
-  writer: WriterInfo;
-}
-
-interface WriterInfo {
-  id: number;
-  nickname: string;
-  image: null | string;
-}
+import { Article, WriterInfo } from "../../../types/articleTypes";
 
 interface AddboardDetailProps {
   articleId: number;

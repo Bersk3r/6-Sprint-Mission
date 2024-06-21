@@ -7,28 +7,7 @@ import { useEffect, useState } from "react";
 import { getArticles } from "../../api/getArticles";
 import formatDate from "../../lib/formatDate";
 import Link from "next/link";
-
-interface ArticleList {
-  posts: Article[];
-  totalCount: number;
-}
-
-interface Article {
-  id: number;
-  title: string;
-  content: string;
-  image: string | null;
-  likeCount: number;
-  createdAt: Date;
-  updatedAt: Date;
-  writer: WriterInfo;
-}
-
-interface WriterInfo {
-  id: number;
-  nickname: string;
-}
-
+import { Article } from "../../types/articleTypes";
 interface ArticlePropsType {
   orderBy: "recent" | "like";
   keyword: string;

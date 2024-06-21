@@ -4,26 +4,11 @@ import MoreIcon from "../../src/assets/images/icons/ic_kebab.svg";
 import HeartIcon from "../../src/assets/images/board/heart-icon.svg";
 import formatDate from "../../lib/formatDate";
 import style from "./AddBoardDetailContent.module.scss";
+import { Article } from "../../types/articleTypes";
 
 type ArticleProps = {
   article: Article;
 };
-
-interface Article {
-  id: number;
-  title: string;
-  content: string;
-  image: string | null;
-  likeCount: number;
-  createdAt: Date;
-  updatedAt: Date;
-  writer: WriterInfo;
-}
-
-interface WriterInfo {
-  id: number;
-  nickname: string;
-}
 
 export default function AddBoardDetailContent({ article }: ArticleProps) {
   return (

@@ -4,31 +4,18 @@ import MoreIcon from "../../src/assets/images/icons/ic_kebab.svg";
 import style from "./AddBoardDetailCommentList.module.scss";
 import EmptyCommentIcon from "../../src/assets/images/ui/empty-comments.svg";
 import elapsedTime from "../../lib/elapsedTime";
+import { Comment } from "../../types/commentTypes";
 
 type CommentsType = {
-  comments: CommentTypes[];
+  comments: Comment[];
 };
-
-interface CommentTypes {
-  id: number;
-  content: string;
-  createdAt: Date;
-  updatedAt: Date;
-  writer: WriterInfo;
-}
-
-interface WriterInfo {
-  id: number;
-  nickname: string;
-  image: null | string;
-}
 
 export default function AddBoardDetailCommentList({ comments }: CommentsType) {
   return (
     <>
       {comments.length > 0 ? (
         <>
-          {comments.map((comment: CommentTypes) => {
+          {comments.map((comment: Comment) => {
             return (
               <div key={comment.id} className={style.container}>
                 <div className={style.comment_top}>

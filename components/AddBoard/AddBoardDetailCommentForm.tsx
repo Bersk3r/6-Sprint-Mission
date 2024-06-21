@@ -2,25 +2,12 @@ import React, { useEffect, useRef, useState } from "react";
 import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
 import style from "./AddBoardDetailCommentForm.module.scss";
 import { setArticleCommentsById } from "../../api/setArticleCommentsById";
-
-interface CommentTypes {
-  id: number;
-  content: string;
-  createdAt: Date;
-  updatedAt: Date;
-  writer: WriterInfo;
-}
-
-interface WriterInfo {
-  id: number;
-  nickname: string;
-  image: null | string;
-}
+import { Comment } from "../../types/commentTypes";
 
 interface AddBoardCommentDetailFormProps {
   articleId: number;
-  comments: CommentTypes[];
-  setComments: (comments: CommentTypes[]) => void;
+  comments: Comment[];
+  setComments: (comments: Comment[]) => void;
 }
 
 export default function AddBoardCommentDetailForm({
