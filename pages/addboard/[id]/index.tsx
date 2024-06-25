@@ -4,39 +4,15 @@ import { getArticleCommentsById } from "../../../api/getArticleCommentsById";
 import AddBoardDetailCommentList from "../../../components/AddBoard/AddBoardDetailCommentList";
 import AddBoardDetailCommentForm from "../../../components/AddBoard/AddBoardDetailCommentForm";
 import { getArticleById } from "../../../api/getArticleById";
-import axios from "../../../api/axios";
 
 import AddBoardDetailContent from "../../../components/AddBoard/AddBoardDetailContent";
-
-interface Article {
-  id: number;
-  title: string;
-  content: string;
-  image: string | null;
-  likeCount: number;
-  createdAt: Date;
-  updatedAt: Date;
-  writer: WriterInfo;
-}
-
-interface CommentTypes {
-  id: number;
-  content: string;
-  createdAt: Date;
-  updatedAt: Date;
-  writer: WriterInfo;
-}
-
-interface WriterInfo {
-  id: number;
-  nickname: string;
-  image: null | string;
-}
+import { Article } from "../../../types/articleTypes";
+import { Comment } from "../../../types/commentTypes";
 
 interface AddboardDetailProps {
   articleId: number;
   article: Article;
-  comments: CommentTypes[];
+  comments: Comment[];
 }
 
 export const getServerSideProps = async (context: {

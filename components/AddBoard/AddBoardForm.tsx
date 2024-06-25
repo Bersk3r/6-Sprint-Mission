@@ -4,15 +4,14 @@ import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
 import PlusIcon from "../../src/assets/images/icons/ic_plus.svg";
 import style from "./AddBoardForm.module.scss";
 import Image from "next/image";
-import { getToken } from "../../api/getToken";
 import { SetArticles } from "../../api/setArticles";
 
 export default function AddBoardForm() {
   const router = useRouter();
   const { register, watch, handleSubmit, setValue, getValues } = useForm();
-  const [validate, setValidate] = useState(false);
-  const [accessToken, setAccessToken] = useState("");
-  const [imagePreview, setImagePreview] = useState("");
+  const [validate, setValidate] = useState<boolean>(false);
+  const [accessToken, setAccessToken] = useState<string | null>("");
+  const [imagePreview, setImagePreview] = useState<string | null>("");
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     if (data.image.length <= 0) {
@@ -30,17 +29,8 @@ export default function AddBoardForm() {
     setImagePreview("");
   };
 
-  const AuthUser = async () => {
-    const res = await getToken({});
-    setAccessToken(res.accessToken);
-  };
-
   const handleChange = () => {
-    if (!getValues(["title", "content"]).includes("")) {
-      setValidate(true);
-    } else {
-      setValidate(false);
-    }
+    setValidate(!!getValues(["title", "content"]).includes(""));
   };
 
   useEffect(() => {
@@ -51,7 +41,7 @@ export default function AddBoardForm() {
   }, [image]);
 
   useEffect(() => {
-    AuthUser();
+    setAccessToken(localStorage.getItem("accessToken"));
   }, []);
 
   return (

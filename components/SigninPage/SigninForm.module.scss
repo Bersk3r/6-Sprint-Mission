@@ -14,8 +14,12 @@
       flex-direction: column;
       gap: 10px;
       .form_label {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
         @include font-base(get_color(gray_800), 700, 18px, 21.48px);
       }
+
       .form_input {
         background-color: get_color(gray_100);
         border-radius: 12px;

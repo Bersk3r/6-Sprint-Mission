@@ -3,11 +3,11 @@ import axios from "./axios";
 interface SetArticleCommentsByIdQuery {
   articleId: number;
   content: string;
-  token: string;
+  token: string | null;
 }
 
 export const setArticleCommentsById = async ({
-  articleId = 1,
+  articleId,
   content = "",
   token = "",
 }: SetArticleCommentsByIdQuery) => {
@@ -28,6 +28,7 @@ export const setArticleCommentsById = async ({
 
     return response.data;
   } catch (error) {
-    throw new Error("잘못된 요청을 보냈습니다.");
+    console.error(`Failed to fetch Data: ${error}`);
+    throw error;
   }
 };

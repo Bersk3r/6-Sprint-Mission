@@ -59,21 +59,14 @@ export default function SignupForm() {
   }, [router]);
 
   const handleBlur = () => {
-    console.log(formState.errors);
-    console.log(Object.keys(formState.errors).length);
-    if (
-      !getValues([
+    setValidate(
+      !!getValues([
         "email",
         "nickname",
         "password",
         "password_confirm",
-      ]).includes("") &&
-      Object.keys(formState.errors).length === 0
-    ) {
-      setValidate(true);
-    } else {
-      setValidate(false);
-    }
+      ]).includes("") && Object.keys(formState.errors).length === 0
+    );
   };
 
   return (

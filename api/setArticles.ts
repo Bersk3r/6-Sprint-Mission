@@ -4,7 +4,7 @@ interface SetArticleQueries {
   // image?: null | FileList;
   content?: string;
   title?: string;
-  token?: string;
+  token?: string | null;
 }
 
 export const SetArticles = async ({
@@ -30,10 +30,9 @@ export const SetArticles = async ({
       }
     );
 
-    localStorage.setItem("accessToken", token);
-
     return response.data;
   } catch (error) {
-    throw new Error("잘못된 요청을 보냈습니다.");
+    console.error(`Failed to fetch Data: ${error}`);
+    throw error;
   }
 };

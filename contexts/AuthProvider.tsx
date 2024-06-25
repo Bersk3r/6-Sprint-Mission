@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import axios from "../api/axios";
+import { UserType } from "../types/userTypes";
 import {
   ReactNode,
   createContext,
@@ -7,18 +8,10 @@ import {
   useEffect,
   useState,
 } from "react";
+import { getMe } from "../api/getMe";
 
 type AuthProviderProps = {
   children: ReactNode;
-};
-
-type UserType = {
-  id: number;
-  nickname: string;
-  image: File;
-  createdAt: Date;
-  updateAt: Date;
-  email: string;
 };
 
 type valuesType = { user: UserType | null; isPending: Boolean };
@@ -46,26 +39,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
     isPending: true,
   });
 
-  async function getMe() {
-    setValues((prevValues) => ({
-      ...prevValues,
-      isPending: false,
-    }));
-
-    let nextUser: UserType;
-
-    try {
-      const res = await axios.get("/users/me");
-      nextUser = res.data;
-    } finally {
-      setValues((prevValues) => ({
-        ...prevValues,
-        user: nextUser,
-        isPending: false,
-      }));
-    }
-  }
-
   async function login({
     email,
     password,
@@ -77,8 +50,15 @@ export function AuthProvider({ children }: AuthProviderProps) {
       email,
       password,
     });
-    localStorage.setItem("accessToken", res.data.accessToken);
-    // await getMe();
+    localStorage.setItem("accessToken", JSON.stringify(res.data.accessToken));
+
+    const { nextUser } = await getMe();
+
+    setValues((prevValues) => ({
+      ...prevValues,
+      user: nextUser,
+      isPending: false,
+    }));
   }
 
   async function logout() {

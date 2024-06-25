@@ -17,11 +17,8 @@ export default function Header() {
   const [isAuth, setIsAuth] = useState(false);
 
   useEffect(() => {
-    if (localStorage.getItem("accessToken")) {
-      setIsAuth(!isAuth);
-    } else {
-      setIsAuth(false);
-    }
+    const accessToken = localStorage.getItem("accessToken");
+    setIsAuth(!!accessToken);
   }, []);
 
   return (

@@ -1,27 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
 import style from "./AddBoardDetailCommentForm.module.scss";
-import { getToken } from "../../api/getToken";
 import { setArticleCommentsById } from "../../api/setArticleCommentsById";
-
-interface CommentTypes {
-  id: number;
-  content: string;
-  createdAt: Date;
-  updatedAt: Date;
-  writer: WriterInfo;
-}
-
-interface WriterInfo {
-  id: number;
-  nickname: string;
-  image: null | string;
-}
+import { Comment } from "../../types/commentTypes";
 
 interface AddBoardCommentDetailFormProps {
   articleId: number;
-  comments: CommentTypes[];
-  setComments: (comments: CommentTypes[]) => void;
+  comments: Comment[];
+  setComments: (comments: Comment[]) => void;
 }
 
 export default function AddBoardCommentDetailForm({
@@ -30,8 +16,8 @@ export default function AddBoardCommentDetailForm({
   setComments,
 }: AddBoardCommentDetailFormProps) {
   const { register, handleSubmit, getValues, setValue } = useForm();
-  const [validate, setValidate] = useState(false);
-  const [accessToken, setAccessToken] = useState("");
+  const [validate, setValidate] = useState<Boolean>(false);
+  const [accessToken, setAccessToken] = useState<string | null>("");
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     const comment = await setArticleCommentsById({
@@ -43,21 +29,12 @@ export default function AddBoardCommentDetailForm({
     setValue("comment", "");
   };
 
-  const AuthUser = async () => {
-    const res = await getToken({});
-    setAccessToken(res.accessToken);
-  };
-
   const handleChange = () => {
-    if (!getValues(["comment"]).includes("")) {
-      setValidate(true);
-    } else {
-      setValidate(false);
-    }
+    setValidate(!!getValues(["comment"]).includes(""));
   };
 
   useEffect(() => {
-    AuthUser();
+    setAccessToken(localStorage.getItem("accessToken"));
   }, []);
 
   return (
